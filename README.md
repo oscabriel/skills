@@ -75,7 +75,19 @@ The skill helps turn approved context into:
 - production and test call stacks;
 - dependency-direction checks where practical.
 
-There is no setup step for this skill. Use it when the project already has enough agreed context to encode structure safely, for example:
+#### Setup
+
+The setup for this skill is a thorough `grill-with-docs` session first. Use grilling to produce or update the context docs this skill will turn into types:
+
+- canonical domain terms in `CONTEXT.md`;
+- ADRs for durable architectural decisions;
+- approved notes/specs from the grill session.
+
+If that context does not exist yet, run `grill-with-docs` before `docs-to-types`.
+
+#### Usage
+
+Use it when the project already has enough agreed context to encode structure safely, for example:
 
 ```text
 Use docs-to-types to turn these grill-with-docs decisions into domain types, service seams, typed errors, and dependency boundaries. Do not implement business behavior yet.

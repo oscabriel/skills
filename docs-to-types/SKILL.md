@@ -1,15 +1,12 @@
 ---
 name: docs-to-types
 description: >-
-  Converts grill-with-docs output — CONTEXT.md glossaries, ADRs, and approved
-  domain decisions — into typechecked app structure. Use after
-  grill-with-docs when the user wants domain types, seams, adapters, errors,
-  call stacks, and dependency rules expressed in code before business behavior.
+  Converts grill-with-docs output — CONTEXT.md glossaries, ADRs, and approved domain decisions — into typed architecture. Use after grill-with-docs when the user wants domain types, seams, adapters, errors, call stacks, and dependency rules expressed in code before business behavior.
 ---
 
 # Docs to Types
 
-Upfront architecture skill for converting clarified prose into compile-visible structure. If the team knows a durable domain or architecture fact, the type system and module graph should know it too.
+Upfront architecture skill for converting clarified prose into typed architecture. If the team knows a durable domain or architecture fact, the type system and module graph should know it too.
 
 Not for general grilling, refactoring review, or the first TDD slice. `CONTEXT.md`, ADRs, and grill notes are source material, not the final harness.
 

@@ -14,6 +14,48 @@ LOCAL="$CLONE_ROOT/$HOST/$OWNER/$REPO"
 
 Expand `~` manually in shell commands; do not quote paths containing literal `~` expecting shell expansion inside variables.
 
+## Normalize repository inputs
+
+Accept any of these formats:
+
+```text
+owner/repo
+https://github.com/owner/repo
+https://github.com/owner/repo/tree/main/path
+https://github.com/owner/repo/blob/main/file.ts
+git@github.com:owner/repo.git
+```
+
+Strip URL suffixes (`/tree/...`, `/blob/...`, `/issues/...`, `/pull/...`) and normalize to `host/owner/repo`. Then map to `$CLONE_ROOT/$HOST/$OWNER/$REPO`.
+
+## Local-first repo resolution
+
+For ambiguous names (e.g. "mole", "react router", "the auth library"), search the local shelf before web search:
+
+```bash
+KEYWORD="mole"
+
+# Inventory first, if present.
+test -f "$CLONE_ROOT/README.md" && rg -i -- "$KEYWORD" "$CLONE_ROOT/README.md"
+
+# Then human-findable clone paths.
+find "$CLONE_ROOT" -mindepth 3 -maxdepth 3 -type d \
+  | grep -i -- "$KEYWORD"
+
+# Confirm candidate repos.
+test -d "$CLONE_ROOT/github.com/owner/repo/.git" \
+  && git -C "$CLONE_ROOT/github.com/owner/repo" rev-parse HEAD \
+  && git -C "$CLONE_ROOT/github.com/owner/repo" status --porcelain
+```
+
+Selection rules:
+
+- Exact `repo` name match beats substring match.
+- Exact `owner/repo` match beats repo-only match.
+- A locally cloned repo beats a web result unless evidence shows it is the wrong project.
+- If two local clones are equally plausible, ask the user to choose.
+- If local search finds no plausible clone, use web/code search to identify the canonical repo.
+
 ## Check for an existing clone
 
 ```bash
