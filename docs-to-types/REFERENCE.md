@@ -1,4 +1,4 @@
-# Architecture Spine Reference
+# Docs to Types Reference
 
 Use this only when `SKILL.md` needs concrete examples or scope boundaries.
 

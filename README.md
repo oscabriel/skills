@@ -60,9 +60,9 @@ Replicant should then:
 4. inspect the source directly;
 5. answer with evidence, including the commit SHA, file paths, and line ranges when practical.
 
-### Architecture Spine
+### Docs to Types
 
-[`architecture-spine`](./architecture-spine/SKILL.md) converts clarified domain context into compile-visible architecture before business behavior is implemented. It is meant for the moment after a plan, grill session, ADR, or domain discussion has produced durable decisions, but before the agent starts coding product workflows.
+[`docs-to-types`](./docs-to-types/SKILL.md) converts clarified domain context into compile-visible architecture before business behavior is implemented. It is meant for the moment after a plan, grill session, ADR, or domain discussion has produced durable decisions, but before the agent starts coding product workflows.
 
 The skill helps turn approved context into:
 
@@ -78,7 +78,7 @@ The skill helps turn approved context into:
 There is no setup step for this skill. Use it when the project already has enough agreed context to encode structure safely, for example:
 
 ```text
-Use architecture-spine to turn these grill-with-docs decisions into domain types, service seams, typed errors, and dependency boundaries. Do not implement business behavior yet.
+Use docs-to-types to turn these grill-with-docs decisions into domain types, service seams, typed errors, and dependency boundaries. Do not implement business behavior yet.
 ```
 
-Architecture Spine should not create product workflows, fake persistence, fake network behavior, or speculative implementation logic. Its job is to make the intended architecture hard to accidentally violate before feature work begins.
+Docs to Types should not create product workflows, fake persistence, fake network behavior, or speculative implementation logic. Its job is to make the intended architecture hard to accidentally violate before feature work begins.

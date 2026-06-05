@@ -1,13 +1,13 @@
 ---
-name: architecture-spine
+name: docs-to-types
 description: >-
   Converts grill-with-docs output — CONTEXT.md glossaries, ADRs, and approved
-  domain decisions — into a typechecked architectural spine. Use after
+  domain decisions — into typechecked app structure. Use after
   grill-with-docs when the user wants domain types, seams, adapters, errors,
   call stacks, and dependency rules expressed in code before business behavior.
 ---
 
-# Architecture Spine
+# Docs to Types
 
 Upfront architecture skill for converting clarified prose into compile-visible structure. If the team knows a durable domain or architecture fact, the type system and module graph should know it too.
 
@@ -15,7 +15,7 @@ Not for general grilling, refactoring review, or the first TDD slice. `CONTEXT.m
 
 ## Prime directive
 
-Do **not** implement business behavior. Compress approved context into the whole intended architectural spine:
+Do **not** implement business behavior. Compress approved context into the whole intended typed architecture:
 
 - canonical domain types, schemas, brands, and invariants
 - discriminated unions/state models that rule out invalid states
@@ -62,7 +62,7 @@ If a prose fact cannot be represented cleanly as a type, seam, adapter, state, e
 
 Example: `CONTEXT.md` says “Operator,” but code says “User” and “Actor.” Which is canonical?
 
-### 3. Propose the spine
+### 3. Propose the typed structure
 
 Before editing, unless the user requested direct implementation, list:
 
@@ -78,9 +78,9 @@ Before editing, unless the user requested direct implementation, list:
 
 Ask for approval.
 
-### 4. Codify only the spine
+### 4. Codify only the typed structure
 
-When approved, write compiling architecture code for the full intended spine.
+When approved, write compiling architecture code for the full intended typed structure.
 
 Rules:
 
