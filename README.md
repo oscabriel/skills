@@ -1,12 +1,10 @@
 # Agent Skills
 
-A small collection of agent skills I use locally.
-
-This repo is intentionally simple: each skill lives in a top-level directory with its own `SKILL.md` and any supporting reference files beside it.
+A small collection of agent skills I use locally. Each skill lives in a top-level directory with its own `SKILL.md` and any supporting reference files beside it.
 
 ## Install
 
-Install these skills with [skills.sh](https://skills.sh):
+Install with [skills.sh](https://skills.sh):
 
 ```bash
 npx skills@latest add oscabriel/skills
@@ -20,7 +18,7 @@ npx skills@latest add oscabriel/skills
 
 Replicant is useful when you ask about:
 
-- a GitHub (or GitLab, etc) repository;
+- a GitHub (or GitLab, Codeberg, etc) repository;
 - an open-source library or framework;
 - package internals;
 - implementation details;
