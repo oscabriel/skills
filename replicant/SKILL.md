@@ -11,13 +11,13 @@ Use durable, human-findable local clones of external repositories as source cont
 Replicant is a clone shelf, not a hidden cache, generated-docs system, or custom CLI.
 
 <!-- REPLICANT_CONFIG
-configured: true
+configured: false
 clone_root: ~/clones
 default_update_policy: auto-clean-only
 default_clone_depth: full
 preferred_transport: ssh
 inventory_file: ~/clones/README.md
-last_setup_at: 2026-06-05
+last_setup_at:
 REPLICANT_CONFIG -->
 
 ## Clone layout
