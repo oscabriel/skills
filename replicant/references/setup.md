@@ -4,33 +4,67 @@ Replicant has no CLI and no hidden map. First-run state lives in the skill's `RE
 
 ## First-run prompt
 
+First-run setup is an intentional configuration flow. Do **not** silently assume defaults. The user may accept the recommended defaults, including accepting all recommendations at once, but only after the agent has presented each configurable choice and the user has explicitly confirmed their selections.
+
 Use this concise setup prompt:
 
 ```text
-Replicant keeps durable source clones for humans and agents. I recommend `~/clones` as the central clone shelf.
+Replicant keeps durable source clones for humans and agents. I can recommend defaults, but I will not assume them without your confirmation.
 
-Confirm these defaults?
-- Clone root: ~/clones
-- Update policy: ask before pulling existing clones
-- Clone depth: shallow (`--depth 1`)
-- Transport: HTTPS
+Please choose each setup option, or say "accept recommendations" to use all recommended values:
+
+1. Clone root
+   - Recommended: ~/clones
+   - Why: human-findable, central, outside project repos
+   - You can choose any directory.
+
+2. Update policy for existing clones
+   - Recommended: ask
+   - Options:
+     - ask: ask before pulling existing clones
+     - auto-clean-only: auto-pull only when the working tree is clean
+     - never: never update unless explicitly asked
+
+3. Clone depth
+   - Recommended: 1 (shallow)
+   - Options:
+     - 1: shallow clone, fast and small
+     - full: full history for archaeology, blame, and tag-heavy work
+
+4. Preferred transport
+   - Recommended: https
+   - Options:
+     - https: simplest for public repos
+     - ssh: useful for private repos and configured SSH keys
+
+5. Inventory file
+   - Recommended: <clone root>/README.md
+   - Purpose: human-readable list and notes for useful clones
+
+Reply with your choices, or say "accept recommendations".
 ```
 
-If the user wants details, explain options:
+Configuration choices:
 
 - `clone_root`
-  - default: `~/clones`
+  - recommended: `~/clones`
   - should be human-findable and outside project repos
 - `default_update_policy`
+  - recommended: `ask`
   - `ask`: ask before pulling existing clones
   - `auto-clean-only`: auto-pull only when working tree is clean
   - `never`: do not update unless user explicitly asks
 - `default_clone_depth`
+  - recommended: `1`
   - `1`: shallow clone, fast and small
   - `full`: full history, useful for archaeology/blame/tag-heavy work
 - `preferred_transport`
-  - `https`: default, simplest for public repos
+  - recommended: `https`
+  - `https`: simplest for public repos
   - `ssh`: useful for private repos and configured SSH keys
+- `inventory_file`
+  - recommended: `<clone_root>/README.md`
+  - should live with the clone shelf unless the user chooses otherwise
 
 ## Setup commands
 

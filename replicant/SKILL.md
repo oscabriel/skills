@@ -55,6 +55,8 @@ The `clone_root` in the config block above is authoritative.
 
 If `configured: false` in the config block above, run [setup](references/setup.md) before first use.
 
+First-run setup must be intentional, not silent. Walk the user through every configurable choice in the setup reference before writing config. You may recommend defaults and the user may accept all of them, but do not assume defaults without an explicit user choice or confirmation.
+
 ## References
 
 - [Workflow recipes](references/workflows.md) — clone, update, search, resolution, and answer commands.
