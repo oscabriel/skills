@@ -12,6 +12,14 @@ npx skills@latest add oscabriel/skills
 
 ## Skills
 
+### Pickup
+
+[`pickup`](./pickup/SKILL.md) resumes work from handoff documents. It can brief a fresh session from the newest project handoff or relay an active session into a new herdr pane.
+
+### Herdr Bridge
+
+[`herdr-bridge`](./herdr-bridge/SKILL.md) defines the required protocol for delegating to pi through visible herdr panes, including pane lifecycle, report harvesting, and failure handling. It ships with example global [`CLAUDE.md`](./herdr-bridge/references/CLAUDE.example.md) model-routing and reporting rules that the protocol expects.
+
 ### Replicant
 
 [`replicant`](./replicant/SKILL.md) is a source-first research skill for external repositories and libraries. It teaches an agent to use durable, human-findable local clones as its primary evidence source instead of relying on stale documentation, web snippets, or generated summaries.
