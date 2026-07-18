@@ -1,28 +1,30 @@
-# Reporting changes for review
+# Model routing & reporting
 
-After any big change — yours or a delegated agent's — report per-file summaries instead
-of expecting me to read the diff: files touched plus function signatures
-added/removed/changed. Skip function bodies. Delegated agents (pi included) must return
-this same shape, not raw diff dumps.
-
-# Model selection & delegation
-
-Applies to every delegated agent: Agent tool, Workflow scripts, and the `pi` CLI.
+Routing, reporting, and escalation rules for the herd-flow protocol. Consult this file
+before writing any Workflow script, spawning workflow workers, or invoking `pi`.
 Sections are in precedence order — on conflict, the earlier section wins.
 
-BLOCKING REQUIREMENT: before writing any Workflow script, spawning any workflow worker,
-or invoking `pi`, load the skill at `skills/herdr-bridge/SKILL.md`. Its protocol is
-mandatory, not reference material. gpt-5.6-sol is only reachable via `pi`;
-Claude models run only via the Agent/Workflow `model` parameter.
+Model names, costs, and effort tiers below reflect the author's setup. Adapt them to
+the models available in your environment, but keep the shape: one head
+orchestrator/reviewer, cheaper implementer models, and an explicit escalation ladder.
+gpt-5.6-sol is only reachable via `pi`; Claude models run only via the Agent/Workflow
+`model` parameter.
+
+## Reporting changes for review
+
+After any big change — the head's or a delegated agent's — report per-file summaries
+instead of expecting the user to read the diff: files touched plus function signatures
+added/removed/changed. Skip function bodies. Delegated agents (pi included) must return
+this same shape, not raw diff dumps.
 
 ## Hard rules (nothing overrides these)
 
 - **Fan-out is never Fable.** Anything spawning 2+ agents (workflows, `parallel()`/
   `pipeline()`, agent batches) uses only opus, sonnet, or gpt-5.6-sol-via-`pi`.
 - **Workflow subagents are always pi in surfaced herdr panes** via the sonnet bridge —
-  never headless, never bare Claude workers; every pi prompt carries the skill's
-  report-back instruction. The only Claude agents in a workflow are bridges. An
-  adversarial-verify pi wave may follow an implementation wave; the Fable head always
+  never headless, never bare Claude workers; every pi prompt carries the report-back
+  instruction from `SKILL.md`. The only Claude agents in a workflow are bridges. An
+  adversarial-verify pi wave may follow an implementation wave; the head always
   performs the final review of harvested reports and verdicts itself.
 - **Fable is at most ONE agent at a time** — head orchestrator/reviewer or via the
   escalation ladder.
@@ -33,14 +35,13 @@ Claude models run only via the Agent/Workflow `model` parameter.
 
 Fable is the head orchestrator and reviewer; Opus and gpt-5.6-sol are the implementers.
 
-1. Inside a Workflow script → pi-in-herdr-pane per the hard rules and the
-   herdr-bridge skill.
+1. Inside a Workflow script → pi-in-herdr-pane per the hard rules and `SKILL.md`.
 2. Spawning 2+ agents outside a workflow → opus (default), sonnet, or gpt-5.6-sol-via-`pi`.
 3. Bulk/mechanical work (clear-spec implementation, migrations, data analysis, long log
    digs, broad codebase scans) → gpt-5.6-sol via `pi -p`; it reports conclusions, not dumps.
-4. Reviews of plans/implementations → the Fable head reviews itself (per-file summaries
-   - signatures), or at most one Fable review agent; optionally add opus-4.8 or gpt-5.6-sol
-     as an independent second perspective.
+4. Reviews of plans/implementations → the head reviews itself (per-file summaries +
+   signatures), or at most one Fable review agent; optionally add opus-4.8 or gpt-5.6-sol
+   as an independent second perspective.
 5. Everything else (investigation, design, user-facing work) → opus-4.8.
 
 Constraints:
@@ -55,8 +56,8 @@ Constraints:
 Standing permission to escalate without asking: judge the output, not the price tag —
 but use cheaper models to gather information and try things first. Climb in order:
 
-1. Re-run gpt-5.6-sol with a tighter prompt or higher thinking (suffix per the skill). Via
-   the herdr bridge, prefer a follow-up `pane run` in the same pi session over a
+1. Re-run gpt-5.6-sol with a tighter prompt or higher thinking (suffix per `SKILL.md`).
+   Via herd-flow, prefer a follow-up `pane run` in the same pi session over a
    from-scratch rerun.
 2. Step up to opus-4.8, or get an independent attempt from whichever of opus/gpt-5.6-sol
    hasn't tried yet.
@@ -68,7 +69,7 @@ but use cheaper models to gather information and try things first. Climb in orde
 
 ## Reference: model traits (single-agent quality — routing above always wins)
 
-Higher = better. Cost reflects what I actually pay, not list price.
+Higher = better. Cost reflects what the author actually pays, not list price.
 Intelligence = how hard a problem the model handles unsupervised.
 Taste = UI/UX, code quality, API design, copy.
 

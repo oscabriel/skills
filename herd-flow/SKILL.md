@@ -1,17 +1,16 @@
 ---
-name: herdr-bridge
+name: herd-flow
 description: Mandatory protocol for all pi (gpt-5.6-sol) delegation — one-off `pi` CLI calls and every workflow subagent (pi in a surfaced herdr pane via a sonnet bridge). Load BEFORE writing a Workflow script, spawning workflow workers, delegating to pi/gpt-5.6-sol, or driving herdr panes. Covers pi invocation, pane placement, report harvesting, and failure handling.
 ---
 
-# pi delegation & the herdr bridge
+# herd-flow: pi delegation through visible herdr panes
 
-## Companion instructions
+## Routing reference
 
-This skill is designed to be used with the model-routing and reporting rules in
-[`CLAUDE.example.md`](./references/CLAUDE.example.md), copied from the global Claude
-configuration. Read that file before applying this protocol; where it references
-`skills/herdr-bridge/SKILL.md`,
-that means this file.
+Before writing a Workflow script or launching a dynamic workflow, read
+[`references/routing.md`](./references/routing.md) — the model-routing, reporting, and
+escalation rules this protocol operates under. This file covers HOW to run pi workers;
+the routing reference covers WHO does which work.
 
 ## pi CLI mechanics
 

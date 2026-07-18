@@ -16,9 +16,9 @@ npx skills@latest add oscabriel/skills
 
 [`pickup`](./pickup/SKILL.md) resumes work from handoff documents. It can brief a fresh session from the newest project handoff or relay an active session into a new herdr pane, relaunching with the same command that started the current session. It is a companion to [mattpocock's `/handoff`](https://github.com/mattpocock/skills) skill; a lightly adapted copy is bundled in [`pickup/references/handoff/`](./pickup/references/handoff/), and [`pickup/README.md`](./pickup/README.md) covers setup and prerequisites.
 
-### Herdr Bridge
+### Herd Flow
 
-[`herdr-bridge`](./herdr-bridge/SKILL.md) defines the required protocol for delegating to pi through visible herdr panes, including pane lifecycle, report harvesting, and failure handling. It ships with example global [`CLAUDE.md`](./herdr-bridge/references/CLAUDE.example.md) model-routing and reporting rules that the protocol expects.
+[`herd-flow`](./herd-flow/SKILL.md) defines the required protocol for delegating to pi through visible herdr panes, including pane lifecycle, report harvesting, and failure handling. Before launching a dynamic workflow it consults its bundled [routing reference](./herd-flow/references/routing.md) for model routing, reporting shape, and escalation rules.
 
 ### Replicant
 
