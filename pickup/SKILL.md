@@ -1,7 +1,7 @@
 ---
 name: pickup
 description: Resume work from a handoff document written by /handoff. Run in a fresh session to read the newest handoff and get briefed; run mid-session to hand off and relaunch into a fresh session automatically (via herdr when available).
-argument-hint: "Optional: a topic/filename to match, or a focus for the next session"
+argument-hint: "What will you pick up with in the next session?"
 disable-model-invocation: true
 ---
 
