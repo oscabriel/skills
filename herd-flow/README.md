@@ -1,6 +1,6 @@
-# Herd Flow
+# /herd-flow
 
-Herd Flow is a Claude Code skill for delegating work to [pi](https://pi.dev) while keeping every long-running worker visible and controllable through herdr.
+`/herd-flow` is a Claude Code skill for delegating work to [pi](https://pi.dev) while keeping every long-running worker visible and controllable through herdr.
 
 It gives Claude a concrete protocol for:
 

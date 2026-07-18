@@ -1,9 +1,14 @@
 ---
 name: herd-flow
 description: Mandatory protocol for all pi (gpt-5.6-sol) delegation — one-off `pi` CLI calls and every workflow subagent (pi in a surfaced herdr pane via a sonnet bridge). Load BEFORE writing a Workflow script, spawning workflow workers, delegating to pi/gpt-5.6-sol, or driving herdr panes. Covers pi invocation, pane placement, report harvesting, and failure handling.
+argument-hint: "What should the herd work on?"
 ---
 
 # herd-flow: pi delegation through visible herdr panes
+
+If invoked with arguments, treat them as the task to delegate: apply the routing
+reference below, then run the delegation protocol on that brief. If invoked bare, load
+this protocol and apply it to the work at hand.
 
 ## Routing reference
 
