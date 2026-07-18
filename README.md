@@ -14,7 +14,7 @@ npx skills@latest add oscabriel/skills
 
 ### Pickup
 
-[`pickup`](./pickup/SKILL.md) resumes work from handoff documents. It can brief a fresh session from the newest project handoff or relay an active session into a new herdr pane.
+[`pickup`](./pickup/SKILL.md) resumes work from handoff documents. It can brief a fresh session from the newest project handoff or relay an active session into a new herdr pane, relaunching with the same command that started the current session. It is a companion to [mattpocock's `/handoff`](https://github.com/mattpocock/skills) skill; a lightly adapted copy is bundled in [`pickup/references/handoff/`](./pickup/references/handoff/), and [`pickup/README.md`](./pickup/README.md) covers setup and prerequisites.
 
 ### Herdr Bridge
 

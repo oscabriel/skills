@@ -18,7 +18,7 @@ Goal: this session ends; a fresh session in a new herdr pane continues from a ha
 
 ### 1. Write the handoff
 
-Follow the instructions in `~/.claude/skills/handoff/SKILL.md` exactly. Treat any arguments as the description of what the next session will focus on.
+Follow the instructions in `~/.claude/skills/handoff/SKILL.md` exactly; if that skill is not installed, use the bundled copy at `references/handoff/SKILL.md` next to this file. Treat any arguments as the description of what the next session will focus on.
 
 ### 2. Check for herdr
 
@@ -26,16 +26,19 @@ Follow the instructions in `~/.claude/skills/handoff/SKILL.md` exactly. Treat an
 test "${HERDR_ENV:-}" = 1
 ```
 
-If this fails, or any herdr command below fails, use the fallback: print the handoff doc path, tell the user to start a fresh `cc` in this project and run `/pickup`, and stop. Do not attempt any other way to spawn or kill sessions.
+If this fails, or any herdr command below fails, use the fallback: print the handoff doc path, tell the user to start a fresh session in this project and run `/pickup`, and stop. Do not attempt any other way to spawn or kill sessions.
 
 ### 3. Spawn the successor
 
 Split a new pane to the right of this one, launch the fresh agent with the pickup prompt as its launch argument, and verify it started before tearing anything down. The prompt must be passed at launch — after this pane closes, nothing is left to send it.
 
+Launch the successor with the same command that started this session: from a Bash call, `ps -o args= -p $PPID` prints this agent process's command line (the shell's parent), with any alias already expanded and flags included. Drop any positional prompt argument and keep the command plus its flags. If the output doesn't look like an agent CLI invocation, fall back to `claude`.
+
 ```bash
+launch=$(ps -o args= -p $PPID)   # e.g. "claude --some-flag"; fall back to "claude" if implausible
 new=$(herdr pane split --current --direction right --no-focus --cwd "<project-root>" | jq -r '.result.pane.pane_id')
 herdr pane rename "$new" "<project> pickup"
-herdr pane run "$new" "cc '/pickup <focus args, if any>'"
+herdr pane run "$new" "$launch '/pickup <focus args, if any>'"
 herdr wait agent-status "$new" --status working --timeout 45000
 ```
 
