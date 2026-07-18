@@ -44,8 +44,6 @@ Configure pi with access to the model named in `SKILL.md`, or update the skill t
 
 [`references/routing.md`](./references/routing.md) ships with the author's model names, relative costs, and effort tiers. Adjust it once at install time to match your environment — which model plays the head orchestrator/reviewer, which models implement, and what the escalation ladder climbs through. Keep the structure even if you swap every model in it: one head that reviews everything, cheaper implementers, and an explicit escalation path.
 
-To make the protocol hard to skip, you can also add a short note to your global `~/.claude/CLAUDE.md` requiring the herd-flow skill to be loaded before invoking pi or spawning Workflow workers.
-
 ### 4. Use it in dynamic Workflows
 
 Ask Claude Code to use a dynamic Workflow when a task benefits from parallel investigation, implementation, or verification. With the skill installed, Claude should:
