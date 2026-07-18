@@ -15,7 +15,9 @@ the routing reference covers WHO does which work.
 ## pi CLI mechanics
 
 gpt-5.6-sol is only reachable via `pi`; Claude models run via the Agent/Workflow
-`model` parameter, never through pi. Default pi model: `openai-codex/gpt-5.6-sol:low`.
+`model` parameter, never through pi. Default pi model: `openai-codex/gpt-5.6-sol:low` —
+an example of the author's setup; substitute the model configured in your pi
+environment, keeping the `:low`/`:medium`/`:high` thinking-suffix pattern.
 Calibration: staged pinned-contract implementation briefs (~1–2k lines, multi-package)
 run reliably at `:medium` (~15–30 min); keep `:low` for small mechanical tasks.
 Smoke-test with a one-line `pi -p` before fanning out a wave.
@@ -47,9 +49,9 @@ Report-back instruction — append verbatim to every workflow pi prompt:
 "When finished, write your REPORT to <report-path>: per-file summaries with function
 signatures added/removed/changed, plus your conclusions and anything you're unsure
 about. For read-only tasks (investigation, review, verification) skip the signature
-section and report your findings instead. Your report goes to the Fable head
-orchestrator, who reviews and verifies your work after you finish — flag open questions
-rather than papering over them."
+section and report your findings instead. Your report goes to the head orchestrator,
+who reviews and verifies your work after you finish — flag open questions rather than
+papering over them."
 
 For long briefs, instruct pi to APPEND to the report file after each stage — a dead or
 blocked pi then leaves a harvestable trail instead of nothing.
