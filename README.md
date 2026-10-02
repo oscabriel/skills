@@ -12,9 +12,9 @@ npx skills@latest add oscabriel/skills
 
 ## Skills
 
-### Pickup
+### Handoff and Pickup
 
-[`pickup`](./pickup/SKILL.md) resumes work from handoff documents. It can brief a fresh session from the newest project handoff or relay an active session into a new herdr pane, relaunching with the same command that started the current session. It is a companion to [mattpocock's `/handoff`](https://github.com/mattpocock/skills) skill; a lightly adapted copy is bundled in [`pickup/references/handoff/`](./pickup/references/handoff/), and [`pickup/README.md`](./pickup/README.md) covers setup and prerequisites.
+[`handoff`](./handoff/SKILL.md) writes a handoff doc to `~/.agents/handoffs/<project>/` at the end of a session. [`pickup`](./pickup/SKILL.md) reads the newest one at the start of the next, checks it against git, and briefs you in a few lines. `/handoff relay` also relaunches the same agent in a new herdr pane that picks the doc up. [`pickup/README.md`](./pickup/README.md) covers how the two fit and how to invoke them in each harness. `handoff` began as [mattpocock's `handoff` skill](https://github.com/mattpocock/skills).
 
 ### Herd Flow
 

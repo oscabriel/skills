@@ -7,3 +7,4 @@ This is a small personal skills repo.
 - Keep supporting docs next to the skill that uses them.
 - Update `README.md` when adding, removing, or renaming a skill.
 - Do not add buckets, `CONTEXT.md`, or ADRs unless explicitly requested.
+- `~/.agents/skills/{handoff,pickup}` symlink into this repo, so edits are live after `/reload` in pi. `replicant` is a copy because its installed `SKILL.md` holds local setup values.

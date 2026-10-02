@@ -1,17 +1,30 @@
-# Pickup
+# Handoff and pickup
 
-`/pickup` resumes work from handoff documents. It is a companion skill to [mattpocock's `/handoff`](https://github.com/mattpocock/skills) ([skill source](https://github.com/mattpocock/skills/blob/main/skills/productivity/handoff/SKILL.md)): `/handoff` compacts a session into a document; `/pickup` reads that document and continues the work.
+Two user-invoked skills that carry work across sessions and harnesses. `/handoff` writes a doc at the end of a session, and `/pickup` reads it at the start of the next one.
 
-## Modes
+```text
+/handoff [relay] <focus>   →   ~/.agents/handoffs/<project>/YYYY-MM-DD-HHMM-<topic>.md   →   /pickup
+```
 
-- **Read mode** — run `/pickup` as the opening message of a fresh session. It finds the newest handoff for the project, verifies the doc's claims against the current repo state, and briefs you before any work starts.
-- **Relay mode** — run `/pickup` mid-session. It writes a handoff, spawns a fresh session in a new herdr pane launched with the same command that started the current session (alias-expanded, flags included), and closes its own pane once the successor is confirmed running. Outside herdr it falls back to printing the handoff path so you can relaunch manually.
+## How they fit
+
+- **One bucket per project.** Docs live in `~/.agents/handoffs/<project>/`, where `<project>` is the main repo's basename (worktrees share it). A session run outside git that changed one repo files under that repo; otherwise it uses the working directory's name. The directory sits outside every repo and every harness, so pi, Claude Code, Codex, and OpenCode all share it.
+- **Four questions.** [`handoff/TEMPLATE.md`](../handoff/TEMPLATE.md) holds the doc's four `##` questions and a `repos` frontmatter list of `path: branch@head`.
+- **Pickup is short.** `/pickup` runs git against each listed repo, briefs in at most six lines, and starts on your go. It checks other claims only when the work reaches them. Outside git it takes the newest doc across all buckets.
+- **Docs stand alone.** Each doc carries forward everything still live from the one before, so older docs are safe to delete. `/pickup` deletes docs older than 7 days when you say `clean`.
+- **Relay.** `/handoff relay` writes the doc, starts the same agent with the same flags in a new herdr pane, prompts it to pick up that exact doc, and closes the old pane once the new one is working. Outside herdr it prints the doc path for a manual `/pickup`.
+
+## Invoking
+
+| Harness | Write | Resume |
+| --- | --- | --- |
+| pi | `/skill:handoff` | `/skill:pickup` |
+| Claude Code | `/handoff` | `/pickup` |
+| Codex | `$handoff` | `$pickup` |
 
 ## Prerequisites
 
-- **The `/handoff` skill**, installed at `~/.claude/skills/handoff/`. Either:
-  - install upstream: `npx -y skills add mattpocock/skills --skill handoff --agent claude-code`, or
-  - copy the bundled version from [`references/handoff/`](./references/handoff/) into `~/.claude/skills/handoff/`.
+- Both skills installed side by side in `~/.agents/skills/`. Symlink them to a clone of this repo so edits apply without a copy step. Relay prompts the successor with `~/.agents/skills/pickup/SKILL.md`.
+- Relay only: `herdr` and `jq` on PATH, with the session running in a herdr pane.
 
-  The bundled copy is lightly adapted from upstream: it saves handoffs to `~/.agents/handoffs/<project>/` — the directory read mode checks first — instead of the OS temp directory. Read mode falls back to the temp directory, so unmodified upstream `/handoff` works too.
-- **Relay mode only:** `herdr` and `jq` on PATH, with the session running inside a herdr-managed pane. Read mode needs neither.
+`/handoff` began as [mattpocock's `handoff` skill](https://github.com/mattpocock/skills).
